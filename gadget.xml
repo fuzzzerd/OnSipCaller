@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+	<name>OnSipCaller</name>
+	<version>1.1.0.0</version>
+	<copyright>© 2009</copyright>
+	<author name="Nate Bross"></author>
+	<icons>
+		<icon src="icon.png" height="67" width="130"/> 
+	</icons>
+	<hosts>
+		<host name="sidebar">
+			<base type="HTML" apiVersion="1.0.0" src="OnSipCaller.html" />
+			<permissions>FULL</permissions>
+			<platform minPlatformVersion="1.0" />
+		</host>
+	</hosts>
+</gadget>
