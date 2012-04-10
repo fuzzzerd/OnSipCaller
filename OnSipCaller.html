@@ -102,12 +102,8 @@ JSONscriptRequest.prototype.addScriptTag = function () {
 function FixNumberFormat(number){
     var numberToCall;
     
-    numberToCall = number.replace('.', '')
-                        .replace('-', '')
-                        .replace(' ', '')
-                        .replace('(', '')
-                        .replace(')', '');
-    
+    numberToCall = number.replace(/\.|-|\s|\(|\)|\\|\//mgi, "");
+                        
     if(numberToCall.substring(1, 0) != "1") {
         numberToCall = "1" + numberToCall;
     }
@@ -139,7 +135,7 @@ function loadGadget() {
 	defaultFromAddress = System.Gadget.Settings.readString("defaultFromAddress");
     defaultToDomain = System.Gadget.Settings.readString("defaultToDomain");
 	
-	//$('#debug').html(defaultFromAddress + "<br />" + defaultToDomain);
+	$('#debug').html(defaultFromAddress + "<br />" + defaultToDomain);
 	
     System.Gadget.settingsUI = "settings.html";
     System.Gadget.onSettingsClosed = loadGadget;
