@@ -104,7 +104,8 @@ function FixNumberFormat(number){
     
     numberToCall = number.replace(/\.|-|\s|\(|\)|\\|\//mgi, "");
                         
-    if(numberToCall.substring(1, 0) != "1") {
+	// add one for ten digit numbers
+    if(numberToCall.substring(1, 0) != "1" && numberToCall.length === 10) {
         numberToCall = "1" + numberToCall;
     }
     
