@@ -102,27 +102,29 @@ JSONscriptRequest.prototype.addScriptTag = function () {
 function FixNumberFormat(number){
     var numberToCall;
     
-    numberToCall = number.replace(/\.|-|\s|\(|\)|\\|\//mgi, "");
-                        
+	if(number.indexOf("@") != -1) return number;
+	
+	numberToCall = number.replace(/\.|-|\s|\(|\)|\\|\//mgi, "");
+							
 	// add one for ten digit numbers
-    if(numberToCall.substring(1, 0) != "1" && numberToCall.length === 10) {
-        numberToCall = "1" + numberToCall;
-    }
-    
-    return numberToCall;
+	if(numberToCall.substring(1, 0) != "1" && numberToCall.length === 10) {
+		numberToCall = "1" + numberToCall;
+	}
+	    
+    return numberToCall + defaultToDomain;
 }
 
 $(document).ready(function () {
 	loadGadget();
 	
 	$('#makeCall').click(function() {
+		var toAddress = FixNumberFormat($('#NumberToCall').val());
 		var query = 
 			"Action=CallSetup&Output=json&Callback=callbackFunc" +
 			"&FromAddress=" + defaultFromAddress +
-			"&ToAddress=" 	+ FixNumberFormat($('#NumberToCall').val())
-							+ defaultToDomain;
+			"&ToAddress=" 	+ toAddress;
 		
-		$('#debug').html(query);
+		$('#debug').html(toAddress);
 		
 		var request = jn_apiUrl + '?' + query;
 		
